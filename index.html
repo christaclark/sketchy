@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sketch.js - Simple Canvas-based Drawing for jQuery</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src='lib/sketch.js'></script>
+    <link href='http://fonts.googleapis.com/css?family=Yellowtail|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'/>
+
+    <style type='text/css'>
+      body { font-family: "Open Sans", sans-serif; color: #444; }
+      h1, h2, h3, h4 { font-family: Yellowtail; font-weight: normal; color: #06a; }
+
+      #wrapper { width: 800px; margin: 0 auto; }
+
+      header { text-align: center; }
+      header h1 { font-size: 46px; text-align: center; margin: 15px 10px; }
+
+      article h1 { font-size: 26px; margin: 0 0 15px; }
+
+      article canvas {
+        width: 800px;
+        height: 300px;
+        border: 1px solid #ccc;
+      }
+
+      pre.source {
+        background: #e5eeee;
+        padding: 10px 20px;
+        width: 760px;
+        overflow-x: auto;
+        border: 1px solid #acc;
+      }
+
+      code { background: #cff; }
+
+      .tools { margin-bottom: 10px; }
+      .tools a {
+        border: 1px solid black; height: 30px; line-height: 30px; padding: 0 10px; vertical-align: middle; text-align: center; text-decoration: none; display: inline-block; color: black; font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='wrapper'>
+      <header>
+        <h1>Sketch.js</h1>
+        <p>Welcome! Let's draw some shit.</p>
+      </header>
+
+
+
+
+      <article class='example'>
+        <h1>Get Sketchy</h1>
+
+        <p>Hehe</p>
+        <!-- Colors   - - - - - -
+        Green - #8bc34a
+        Yellow - #ffc107
+        Orange - #ff9800
+        Red - #f76f65
+        Pink - #ffbeff
+        Purple - #9c78e2
+        Blue - #03a9f4
+        Dark Blue - #3f51b5
+        Black - #333
+        - - - - - -   - - - - -->
+
+        <div class='demo' id='colors_demo'>
+          <div class='tools'>
+            <a href='#colors_sketch' data-download='png' style='float: right; width: 100px;'>Download</a>
+          </div>
+          <canvas id='colors_sketch' width='800' height='300'></canvas>
+          <script type='text/javascript'>
+            $(function() {
+              $.each(['#03a9f4', '#8bc34a','#ffc107', '#ff9800', '#f76f65', '#ffbeff', '#9c78e2'], function() {
+                $('#colors_demo .tools').append("<a href='#colors_sketch' data-color='" + this + "' style='width: 10px; background: " + this + ";'></a> ");
+              });
+              $.each([3, 5, 10, 15], function() {
+                $('#colors_demo .tools').append("<a href='#colors_sketch' data-size='" + this + "' style='background: #ccc'>" + this + "</a> ");
+              });
+              $('#colors_sketch').sketch();
+            });
+          </script>
+        </div>
+      </article>
+
+      <article class='info'>
+
+
+        <h1>License</h1>
+
+        <p class="copywright">Copyright (C) 2011 by Michael Bleigh and Intridea, Inc.</p>
+
+        <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:</p>
+
+
+      </article>
+
+    </div>
+    <script type='text/javascript'>
+      var escapeHTML = function(s) {
+        return s
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      $('article.example').each(function() {
+        $(this).append("<pre class='source'></pre>");
+        var html = $(this).find("div.demo").html().replace(/          /g,"");
+        $(this).find("pre.source").html(escapeHTML(html));
+      });
+    </script>
+  </body>
+</html>
